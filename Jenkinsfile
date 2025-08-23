@@ -84,6 +84,10 @@ pipeline {
                 }
             }
 
+            environment {
+                CI_ENVIRONMENT_URL = 'STAGING_URL_TO_BE_SET' //Muszáj itt lennie hogy létezzen mint változó de 8 sorral lejjebb felül íródik, enélkül hibára fut a playwright mert a localhoston keresi mint alapértalmezett beállítás
+            }
+
             steps {
                 sh '''
                     npm install netlify-cli@20.1.1 node-jq
