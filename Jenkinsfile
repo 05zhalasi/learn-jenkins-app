@@ -96,7 +96,7 @@ pipeline {
         }
     }    
 
-}
+
         stage('staging E2E') {
             agent {
                 docker {
