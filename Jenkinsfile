@@ -85,11 +85,12 @@ pipeline {
             }
             steps {
                 sh '''
-                    npm install netlify-cli@20.1.1
+                    npm install netlify-cli@20.1.1 node-jq
                     node_modules/.bin/netlify --version
                     echo "Deploying to production. Project id is : $NETLIFY_PROJECT_ID"
                     node_modules/.bin/netlify deploy --auth $NETLIFY_AUTH_TOKEN --site $NETLIFY_PROJECT_ID --dir=build --json > deploy-output.json
-                '''
+                    node_modules/.bin/node-jq -r '.deploy_url' deploy-output.json
+                    '''
             }
         }
         stage('Approval') {
